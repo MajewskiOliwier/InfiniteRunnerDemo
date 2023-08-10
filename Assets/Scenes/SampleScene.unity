@@ -365,7 +365,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.2716996, y: 0.000000016559111, z: -0.0000000046749666, w: 0.96238214}
+  m_LocalRotation: {x: 0.2716996, y: -0.000000016559117, z: 0.0000000046749684, w: 0.96238214}
   m_LocalPosition: {x: 0, y: 8.89, z: -78.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -435,7 +435,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1284404184}
-  m_LocalRotation: {x: 0.2716996, y: 0.000000016559111, z: -0.0000000046749666, w: 0.96238214}
+  m_LocalRotation: {x: 0.2716996, y: -0.000000016559117, z: 0.0000000046749684, w: 0.96238214}
   m_LocalPosition: {x: 0, y: 8.89, z: -78.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -576,6 +576,7 @@ GameObject:
   - component: {fileID: 1706367111}
   - component: {fileID: 1706367107}
   - component: {fileID: 1706367112}
+  - component: {fileID: 1706367113}
   m_Layer: 0
   m_Name: MainCharacter
   m_TagString: Untagged
@@ -611,14 +612,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85b4787ac67378b4c88dff9b2c5cb68e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementLeft: {fileID: 3352329251413324654, guid: 09ff94b68368306479d976eeea80fda2, type: 3}
-  movementRight: {fileID: -4471978836032631431, guid: 09ff94b68368306479d976eeea80fda2, type: 3}
-  changeLaneSpeed: 120
   straightLaneSpeed: 50
   busy: 0
-  changeToTheRight: 0
-  changeLaneStartPosition: 0
-  currentLine: 1
 --- !u!4 &1706367108
 Transform:
   m_ObjectHideFlags: 0
@@ -739,6 +734,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpHeight: 0
+--- !u!114 &1706367113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706367105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c781a6d6ba705e54bac7eb3fa2f63aa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentLine: 1
+  movementLeft: {fileID: 3352329251413324654, guid: 09ff94b68368306479d976eeea80fda2, type: 3}
+  movementRight: {fileID: -4471978836032631431, guid: 09ff94b68368306479d976eeea80fda2, type: 3}
+  changeLaneSpeed: 30
+  changeToTheRight: 0
+  changeLaneStartPosition: 0
 --- !u!4 &1715361064 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7199165969368614037, guid: 7bfd266a3ed5670429008dab9dc2d2a0, type: 3}
@@ -1156,7 +1169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7766200362626575192, guid: a906d49661b8cf340b1a835ff1c6848e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -58.6
+      value: -37
       objectReference: {fileID: 0}
     - target: {fileID: 7766200362626575192, guid: a906d49661b8cf340b1a835ff1c6848e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1225,7 +1238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8697020807588970401, guid: b53237478ddec554caf63060f7df0aba, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -54.2
+      value: -32.600002
       objectReference: {fileID: 0}
     - target: {fileID: 8697020807588970401, guid: b53237478ddec554caf63060f7df0aba, type: 3}
       propertyPath: m_LocalRotation.w
