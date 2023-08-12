@@ -40,7 +40,7 @@ public class MainCharacterChangeLanes : MonoBehaviour{
         MCrigidbody = mainCharacterMovementManager.GetmCRigidBody();
     }
 
-    private void PerformMoveToRight(InputAction.CallbackContext obj){ // add blockade when moving to the right on right track
+    private void PerformMoveToRight(InputAction.CallbackContext obj){ 
         Debug.Log("ruch w prawo");
         
         if(mainCharacterMovementManager.GetBusy() == false && currentLine != Line.Right){
@@ -89,19 +89,23 @@ public class MainCharacterChangeLanes : MonoBehaviour{
     }
     */
 
-    public void ComparePositions(float straightLaneSpeed,float startingPos,bool isMovingToTheRight){
+    public void ComparePositions(float straightLaneSpeed){
         //float startingPos = changeLaneStartPosition;
-        //bool isMovingToTheRight = changeToTheRight;
-        if(isMovingToTheRight){
+        if(MCrigidbody.velocity.y != 0){
+            Debug.Log(MCrigidbody.velocity.y);
+            return ;
+        }
+
+        if(changeToTheRight){ 
             //Debug.Log("startPos = "+(startingPos+12) + "currPos = "+transform.position.x);
-            if(startingPos+12 < transform.position.x){
+            if(changeLaneStartPosition+12 < transform.position.x){  //changeLanePosition is starting position in this context
                 MCrigidbody.velocity = new Vector3(0 , 0,straightLaneSpeed);
                 mainCharacterMovementManager.SetBusy(false);
 
                 fixOffset(currentLine);
             }
         }else{
-            if(startingPos-12 > transform.position.x){
+            if(changeLaneStartPosition-12 > transform.position.x){
                 MCrigidbody.velocity = new Vector3(0 , 0,straightLaneSpeed);
                 mainCharacterMovementManager.SetBusy(false);
 
@@ -114,19 +118,19 @@ public class MainCharacterChangeLanes : MonoBehaviour{
         switch(currentLineToRemoveOffest){
             case Line.Left:{
                 if(transform.position.x != -12){
-                    transform.position = new Vector3( -12, transform.position.y, transform.position.z);
+                    transform.position = new Vector3( -12, 3, transform.position.z);
                 }
                 break;
             }
             case Line.Middle:{
                 if(transform.position.x != 0){
-                    transform.position = new Vector3(0, transform.position.y, transform.position.z);
+                    transform.position = new Vector3(0, 3, transform.position.z);
                 }
                 break;
             }
             case Line.Right:{
                 if(transform.position.x != 12){
-                    transform.position = new Vector3(12, transform.position.y, transform.position.z);
+                    transform.position = new Vector3(12, 3, transform.position.z);
                 }
                 break;
             }

@@ -9,6 +9,7 @@ public class MainCharacterMovement : MonoBehaviour{
     private Rigidbody mCrigidbody;
     private Vector2 moveInput;
     private MainCharacterChangeLanes mainCharacterChangeLanes; 
+    private MainCharacterJump mainCharacterJump; 
     
 
 
@@ -19,6 +20,7 @@ public class MainCharacterMovement : MonoBehaviour{
     private void Awake() {
         mCrigidbody = gameObject.GetComponent<Rigidbody>();
         mainCharacterChangeLanes = gameObject.GetComponent<MainCharacterChangeLanes>();
+        mainCharacterJump = gameObject.GetComponent<MainCharacterJump>();
     }
 
     
@@ -32,7 +34,8 @@ public class MainCharacterMovement : MonoBehaviour{
     void LateUpdate(){
         //mCrigidbody.AddForce(new Vector3(0,0,1)); //delete
         if(busy){
-            mainCharacterChangeLanes.ComparePositions(straightLaneSpeed,mainCharacterChangeLanes.GetChangeLaneStartPosition(),mainCharacterChangeLanes.GetChangeToRight());
+            mainCharacterChangeLanes.ComparePositions(straightLaneSpeed);
+            mainCharacterJump.ComparePositions();
         }else{
             mCrigidbody.velocity = new Vector3(0 , 0,straightLaneSpeed);
         }
