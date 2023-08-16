@@ -43,6 +43,8 @@ public class MainCharacterChangeLanes : MonoBehaviour{
     private void PerformMoveToRight(InputAction.CallbackContext obj){ 
         Debug.Log("ruch w prawo");
         
+        Animator mainCharacterAnimator = gameObject.GetComponent<MainCharacterManager>().getMainCharacterAnimator();
+
         if(mainCharacterMovementManager.GetBusy() == false && currentLine != Line.Right){
             changeLaneStartPosition = transform.position.x;
             MCrigidbody.velocity = (new Vector3(changeLaneSpeed,0,MCrigidbody.velocity.z)); 
@@ -53,11 +55,16 @@ public class MainCharacterChangeLanes : MonoBehaviour{
             mainCharacterMovementManager.SetBusy(true);
             changeToTheRight = true;
             currentLine += 1;
+            mainCharacterAnimator.SetInteger("RunTypes",1);
+            
         }
     }
 
     private void PerformMoveToLeft(InputAction.CallbackContext obj){
         Debug.Log("ruch w lewo");
+
+        Animator mainCharacterAnimator = gameObject.GetComponent<MainCharacterManager>().getMainCharacterAnimator();
+        
         if(mainCharacterMovementManager.GetBusy() == false && currentLine != Line.Left){
             Debug.Log("move to left");
             changeLaneStartPosition = transform.position.x;
@@ -69,6 +76,7 @@ public class MainCharacterChangeLanes : MonoBehaviour{
             mainCharacterMovementManager.SetBusy(true);
             changeToTheRight = false;
             currentLine -= 1;
+            mainCharacterAnimator.SetInteger("RunTypes",-1);
         }
     }
 
@@ -96,12 +104,16 @@ public class MainCharacterChangeLanes : MonoBehaviour{
             return ;
         }
 
+        Animator mainCharacterAnimator = gameObject.GetComponent<MainCharacterManager>().getMainCharacterAnimator();
+        
+
         if(changeToTheRight){ 
             //Debug.Log("startPos = "+(startingPos+12) + "currPos = "+transform.position.x);
             if(changeLaneStartPosition+12 < transform.position.x){  //changeLanePosition is starting position in this context
                 MCrigidbody.velocity = new Vector3(0 , 0,straightLaneSpeed);
                 mainCharacterMovementManager.SetBusy(false);
-
+                
+                mainCharacterAnimator.SetInteger("RunTypes",0);
                 fixOffset(currentLine);
             }
         }else{
@@ -109,6 +121,7 @@ public class MainCharacterChangeLanes : MonoBehaviour{
                 MCrigidbody.velocity = new Vector3(0 , 0,straightLaneSpeed);
                 mainCharacterMovementManager.SetBusy(false);
 
+                mainCharacterAnimator.SetInteger("RunTypes",0);
                 fixOffset(currentLine);
             }
         }

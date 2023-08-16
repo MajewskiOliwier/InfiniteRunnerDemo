@@ -34,12 +34,17 @@ public class MainCharacterJump : MonoBehaviour
     private void PerformJump(InputAction.CallbackContext obj){
         Debug.Log("Perform jump");
         if(mainCharacterMovement.GetBusy() == false){
+
+            gameObject.GetComponent<MainCharacterManager>().getMainCharacterAnimator().SetTrigger("IsJumping");
             mainCharacterMovement.SetBusy(true);
+            
             Debug.Log("Jump successful");
             jumpStartPosition = transform.position.y;
+            
             StartCoroutine(Countdown());
             
             //MCrigidbody.velocity = (new Vector3((-1)*changeLaneSpeed,0,MCrigidbody.velocity.z));
+
         }
     }
 
@@ -50,8 +55,8 @@ public class MainCharacterJump : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, 3, transform.position.z);
                 mainCharacterMovement.SetBusy(false);
                 isJumping = false;
+                gameObject.GetComponent<MainCharacterManager>().getMainCharacterAnimator().SetBool("isJumping",false);
         }
-        
     }
 
     private IEnumerator Countdown(){
