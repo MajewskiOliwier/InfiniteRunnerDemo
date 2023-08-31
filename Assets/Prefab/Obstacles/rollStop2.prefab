@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7766200362626575193
+--- !u!1 &5157420670816304385
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,60 +8,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7766200362626575192}
-  - component: {fileID: 7766200362626575199}
-  - component: {fileID: 8870850003524556773}
+  - component: {fileID: 5537464273392068539}
+  - component: {fileID: 5427892083653214294}
   m_Layer: 0
-  m_Name: Roadblock
+  m_Name: rollStop2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7766200362626575192
+--- !u!4 &5537464273392068539
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7766200362626575193}
+  m_GameObject: {fileID: 5157420670816304385}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 12.6, y: 3.2, z: 24.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7766200362732543037}
+  - {fileID: 5427892083655444284}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7766200362626575199
-MonoBehaviour:
+--- !u!64 &5427892083653214294
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7766200362626575193}
+  m_GameObject: {fileID: 5157420670816304385}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54f5e324d69661140b81aef78ccc44a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameObjectComment: 'walking into one causes game over
-
-    jumping too late causes
-    warning'
---- !u!114 &8870850003524556773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7766200362626575193}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06cf2b28e73407546aa1b530e7a7a666, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &7766200362732543038
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1898407236644953913, guid: 215e47930562ef944a858cb9b25e24a9, type: 3}
+--- !u!1 &5427892083655444285
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -69,45 +54,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7766200362732543037}
-  - component: {fileID: 7766200362732543170}
-  - component: {fileID: 7766200362732543171}
+  - component: {fileID: 5427892083655444284}
+  - component: {fileID: 5427892083655444258}
+  - component: {fileID: 5427892083655444259}
   m_Layer: 0
-  m_Name: RoadblockVisual
+  m_Name: rollStopVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7766200362732543037
+--- !u!4 &5427892083655444284
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7766200362732543038}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 10, y: 4, z: 3}
+  m_GameObject: {fileID: 5427892083655444285}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 7766200362626575192}
+  m_Father: {fileID: 5537464273392068539}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7766200362732543170
+--- !u!33 &5427892083655444258
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7766200362732543038}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &7766200362732543171
+  m_GameObject: {fileID: 5427892083655444285}
+  m_Mesh: {fileID: 1898407236644953913, guid: 215e47930562ef944a858cb9b25e24a9, type: 3}
+--- !u!23 &5427892083655444259
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7766200362732543038}
+  m_GameObject: {fileID: 5427892083655444285}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
