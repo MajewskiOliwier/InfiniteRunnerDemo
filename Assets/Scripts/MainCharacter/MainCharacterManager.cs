@@ -11,13 +11,6 @@ public class MainCharacterManager : MonoBehaviour
         mainCharacterAnimator = gameObject.GetComponent<Animator>();
     }
 
-    private void Start() {
-        Obstacle.OnColliedEndGame += Obstacle_OnColliedEndGame;
-    }
-
-    private void Obstacle_OnColliedEndGame(object sender, EventArgs e){
-        Debug.Log("Finish this round");
-    }
 
     public Animator getMainCharacterAnimator(){
         return mainCharacterAnimator;

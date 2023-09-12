@@ -31,7 +31,7 @@ public class MainCharacterMovement : MonoBehaviour{
         mCrigidbody.velocity = new Vector3(mCrigidbody.velocity.x, mCrigidbody.velocity.y,straightLaneSpeed);
     }
 
-    void LateUpdate(){
+    void Update(){
         //mCrigidbody.AddForce(new Vector3(0,0,1)); //delete
         if(busy){
             mainCharacterChangeLanes.ComparePositions(straightLaneSpeed);

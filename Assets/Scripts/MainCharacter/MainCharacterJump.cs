@@ -48,21 +48,34 @@ public class MainCharacterJump : MonoBehaviour
         }
     }
 
-    public void ComparePositions(){
-        
+    private void Update(){
+        Debug.Log("JumpstartPos = " + jumpStartPosition);
+    }
 
-        if(jumpStartPosition > transform.position.y && isJumping == true){  //changeLanePosition is starting position in this context
+
+    public void ComparePositions(){
+        if(isJumping == false){
+            return ;
+        }
+
+
+        if(jumpStartPosition > transform.position.y){  //changeLanePosition is starting position in this context
+                Debug.Log("End of jump");
                 transform.position = new Vector3(transform.position.x, 3, transform.position.z);
                 mainCharacterMovement.SetBusy(false);
                 isJumping = false;
                 gameObject.GetComponent<MainCharacterManager>().getMainCharacterAnimator().SetBool("isJumping",false);
+        }else{
+            MCrigidbody.velocity = (new Vector3(0,-jumpVelocity,MCrigidbody.velocity.z));
         }
     }
 
     private IEnumerator Countdown(){
         MCrigidbody.velocity = (new Vector3(0,jumpVelocity,MCrigidbody.velocity.z));
-        isJumping = true;
+        
         yield return new WaitForSeconds(jumpDuration);
+        Debug.Log(this.transform.position.y);
+        isJumping = true;
         MCrigidbody.velocity = (new Vector3(0,-jumpVelocity,MCrigidbody.velocity.z));
         mainCharacterMovement.SetBusy(true);
     }

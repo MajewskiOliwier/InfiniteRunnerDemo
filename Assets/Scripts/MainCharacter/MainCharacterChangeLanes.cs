@@ -6,12 +6,13 @@ using UnityEngine.InputSystem;
 public class MainCharacterChangeLanes : MonoBehaviour{
     
     private enum Line{
-        Left,
-        Middle,
-        Right
+        Left = -1,
+        Middle = 0,
+        Right = 1
     }
 
     [SerializeField] private Line currentLine = Line.Middle; //serialize field for easier debuging
+    [SerializeField] private Line preChangeLine = Line.Middle; //serialize field for easier debuging
     
     [SerializeField] private InputActionReference movementLeft, movementRight;
     [SerializeField] private float changeLaneSpeed;
@@ -99,8 +100,7 @@ public class MainCharacterChangeLanes : MonoBehaviour{
 
     public void ComparePositions(float straightLaneSpeed){
         //float startingPos = changeLaneStartPosition;
-        if(MCrigidbody.velocity.y != 0){
-            Debug.Log(MCrigidbody.velocity.y);
+        if(MCrigidbody.velocity.y != 0 && gameObject.GetComponent<MainCharacterJump>().GetIsJumping() == true){
             return ;
         }
 
@@ -147,13 +147,12 @@ public class MainCharacterChangeLanes : MonoBehaviour{
                 }
                 break;
             }
-
         }
-
+        preChangeLine = currentLine;
     }
 
     private void LateUpdate(){   // for debuging purpose
-        Debug.Log(currentLine);
+        Debug.Log("Current Line is " + currentLine + " " + (int)currentLine);
     }
 
     public bool GetChangeToRight(){
@@ -162,5 +161,14 @@ public class MainCharacterChangeLanes : MonoBehaviour{
 
     public float GetChangeLaneStartPosition(){
         return changeLaneStartPosition;
+    }
+    
+    public int GetCurrentLineXPosition(){
+        //Debug.Log("returned : " + (int)currentLine);
+        return (int)currentLine;
+    }
+    
+    public int GetPreChangePosition(){
+        return (int)currentLine;
     }
 }
