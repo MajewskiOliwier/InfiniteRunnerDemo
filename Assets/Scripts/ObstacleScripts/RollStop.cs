@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,67 +11,48 @@ public class RollStop : Obstacle
         GameObject player = collision.gameObject;
 
         float contactPointX = (collision.contacts[0].point.x + collision.contacts[1].point.x)/2f; // this avarage gets centre of the hit location between MainCharacter and Obstacle
-        float contactPointY = collision.contacts[0].point.y; // this avarage gets centre of the hit location between MainCharacter and Obstacle
-        //Debug.Log("collision in x dimension " + contactPointX);
-        //Debug.Log("collision in y dimension " + contactPointY);
-
+        float contactPointY = (collision.contacts[0].point.y + collision.contacts[1].point.y)/2f; // this avarage gets centre of the hit location between MainCharacter and Obstacle
+        float contactPointZ = (collision.contacts[0].point.z + collision.contacts[1].point.z)/2f; // this avarage gets centre of the hit location between MainCharacter and Obstacle
+        
+        //Debug.Log(this.gameObject.name + " : collision in x dimension : " + contactPointX + " ,collision in y dimension : " + contactPointY);
+    
         float roadblockWidth = 10f/2f;
         bool wasWarningIssued  = player.GetComponent<MainCharacterAnimationSelector>().GetWarningIssued();
         
-        /*
-        if(contactPointY <= 3f &){
-            if(wasWarningIssued){
-                Debug.Log("Death Animation by bumping head after wrongly timed roll");
-            }else{ 
-                Debug.Log("Player bummped head but continue  over but regain balance");
-                player.GetComponent<MainCharacterAnimationSelector>().SetWarningIssued();
-            }
-        }else 
-        */
-        
-        if(GetLocalHitLocationInXPos(roadblockWidth,contactPointX) >= 10f){
-            
-            if(wasWarningIssued){
-                Debug.Log("Death Animation to the right");
-            }else{ 
-                Debug.Log("Player bumped from the right side");
-                player.GetComponent<MainCharacterAnimationSelector>().SetWarningIssued();
-            }
-        }else if(GetLocalHitLocationInXPos(roadblockWidth,contactPointX) <= 0f){
+        int currentLineNumber = player.GetComponent<MainCharacterChangeLanes>().GetCurrentLineXPosition();
+        int preChangeLineNumber = player.GetComponent<MainCharacterChangeLanes>().GetPreChangePosition();
 
-            if(wasWarningIssued){
-                Debug.Log("Death Animation to the left");
-            }else{ 
-                Debug.Log("Player bumped from the left side");
-                player.GetComponent<MainCharacterAnimationSelector>().SetWarningIssued();
-            }
-        }else if(GetLocalHitLocationInXPos(roadblockWidth,contactPointX) > 8f){
+        Vector3 localCollisionPoint = transform.InverseTransformPoint(contactPoint);
+        Debug.Log(this.gameObject.name + "local hit location with my function:  + " + GetLocalHitLocationInZPos(localCollisionPoint.z,contactPointZ ));
+        
+
+        if(GetLocalHitLocationInXPos(roadblockWidth,contactPointX) > 8f){ //occurs when bumping to the side 
             //check if Warrning was issued
             //if yes then play death animation
             //otherwiser play Strafe
-            if(wasWarningIssued){
+            if(wasWarningIssued || ((currentLineNumber < preChangeLineNumber) && GetLocalHitLocationInZPos(localCollisionPoint.z,contactPointZ ) >= 0.99)){ //if the (int) currentLine is lower than preChangeLine then it means that the collision occured after changing lane to the left into the ,,warning zone" 
                 Debug.Log("Death Animation to the right");
             }else{ 
-                Debug.Log("Play animation strafe right "+ (roadblockWidth + (contactPointX-currentLine)));
+                if(GetLocalHitLocationInXPos(roadblockWidth,contactPointX) >= 10f){
+                    OnWarningBounceBackToPreChangeLaneEvent(EventArgs.Empty);
+                }
+                Debug.Log("Player bumped from the right side");
                 player.GetComponent<MainCharacterAnimationSelector>().SetWarningIssued();
             }
-            
-            //Debug.Log(roadblockWidth + (contactPointX-currentLine));
         }else if(GetLocalHitLocationInXPos(roadblockWidth,contactPointX) < 2f){
-            
-            if(wasWarningIssued){
+
+            if(wasWarningIssued || ((currentLineNumber > preChangeLineNumber) && GetLocalHitLocationInZPos(localCollisionPoint.z,contactPointZ ) >= 0.99)){
                 Debug.Log("Death Animation to the left");
             }else{ 
-                Debug.Log("Play animation strafe left  "+ (roadblockWidth + (contactPointX-currentLine)));
+                if(GetLocalHitLocationInXPos(roadblockWidth,contactPointX) <= 0f){
+                    OnWarningBounceBackToPreChangeLaneEvent(EventArgs.Empty);
+                }
+                Debug.Log("Player bumped from the left side");
                 player.GetComponent<MainCharacterAnimationSelector>().SetWarningIssued();
             }
-            //Debug.Log(contactPointX-currentLine));
         }else{
-            Debug.Log("Play Death animation hit dead centre");
+            Debug.Log("Play Death animation hit dead centre + bump head");
         }
     }
 
-    private float GetLocalHitLocationInXPos(float width, float contactPointXWorldPos){
-        return (width + (contactPointXWorldPos-currentLine));
-    }
 }

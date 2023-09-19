@@ -48,9 +48,7 @@ public class MainCharacterJump : MonoBehaviour
         }
     }
 
-    private void Update(){
-        Debug.Log("JumpstartPos = " + jumpStartPosition);
-    }
+    
 
 
     public void ComparePositions(){
@@ -64,7 +62,6 @@ public class MainCharacterJump : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, 3, transform.position.z);
                 mainCharacterMovement.SetBusy(false);
                 isJumping = false;
-                gameObject.GetComponent<MainCharacterManager>().getMainCharacterAnimator().SetBool("isJumping",false);
         }else{
             MCrigidbody.velocity = (new Vector3(0,-jumpVelocity,MCrigidbody.velocity.z));
         }

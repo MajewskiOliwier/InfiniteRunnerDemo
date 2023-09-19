@@ -46,7 +46,7 @@ public class MainCharacterRoll : MonoBehaviour
                 DecreaseMainCharacterCollider();
             }
         }else{
-            Debug.Log("Koniec");
+            //Debug.Log("Koniec");
         }
     }
 

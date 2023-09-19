@@ -2044,6 +2044,7 @@ GameObject:
   - component: {fileID: 6902914964562565948}
   - component: {fileID: 8744650899454499006}
   - component: {fileID: 2074795296}
+  - component: {fileID: 1930929538}
   m_Layer: 0
   m_Name: MainCharacter
   m_TagString: Player
@@ -2202,7 +2203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpVelocity: 20
-  jumpDuration: 0.3
+  jumpDuration: 0.32
   jumpActionInputReference: {fileID: 6941920075228437679, guid: 09ff94b68368306479d976eeea80fda2, type: 3}
   jumpStartPosition: 0
   isJumping: 0
@@ -2218,7 +2219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c781a6d6ba705e54bac7eb3fa2f63aa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLine: 1
+  currentLine: 0
+  preChangeLine: 0
   movementLeft: {fileID: 3352329251413324654, guid: 09ff94b68368306479d976eeea80fda2, type: 3}
   movementRight: {fileID: -4471978836032631431, guid: 09ff94b68368306479d976eeea80fda2, type: 3}
   changeLaneSpeed: 30
@@ -2236,6 +2238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 144bb4d5e042aac40b14a764e67f31b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreManager: {fileID: 0}
 --- !u!114 &8744650899454499006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2268,3 +2271,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1930929538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6902914964562565943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8128ffd1e3c23f34891a439d3132ebf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterYPosDuringRoll: 0.7
+  characterYCenterPosDuringRoll: -0.75
+  characterYPosDefault: 2
+  characterYCenterPosDefault: 0
+  colliderSizeAdjustingSpeed: 3.3
+  colliderCentreAdjustingSpeed: -1.65
+  rollActionInputReference: {fileID: 7340977736855402747, guid: 09ff94b68368306479d976eeea80fda2, type: 3}

@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 826461908271950142}
   - component: {fileID: 5301796774133705183}
-  - component: {fileID: 932974954302255397}
+  - component: {fileID: 8125483463773502935}
+  - component: {fileID: 932974953793891586}
   m_Layer: 0
   m_Name: Lamp
   m_TagString: Untagged
@@ -50,7 +51,19 @@ MonoBehaviour:
     This obstacle
     should be spawned at either position (X = 6 || X = -6) && Rotation (Y = 0 ||
     Y = -180)'
---- !u!64 &932974954302255397
+--- !u!114 &8125483463773502935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14634596742247300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e63b68fc2b8493142af3d324969db058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!64 &932974953793891586
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
