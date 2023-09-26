@@ -37,7 +37,7 @@ public class MainCharacterMovement : MonoBehaviour{
             mainCharacterChangeLanes.ComparePositions(straightLaneSpeed);
             mainCharacterJump.ComparePositions();
         }else{
-            mCrigidbody.velocity = new Vector3(0 , 0,straightLaneSpeed);
+            mCrigidbody.velocity = new Vector3(0 , -mainCharacterJump.GetJumpingVelocity(),straightLaneSpeed);
         }
         
     }

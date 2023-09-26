@@ -18,7 +18,6 @@ public class Coin : Item
     }
    
     protected override void PickUpItem(){
-        Debug.Log("pick up gold");
         scoreManager.AddCoinScore(coinScoreValue);
     }
    

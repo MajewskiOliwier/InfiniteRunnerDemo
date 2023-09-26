@@ -31,7 +31,7 @@ public class Wall : Obstacle
 
         //add splash mid wall ??
 
-        Debug.Log("Stats:  currentline = " +currentLineNumber + " prechangeNumber"+  preChangeLineNumber + " local hit z pos" + GetLocalHitLocationInZPos(localCollisionPoint.z,contactPointZ ));
+        //Debug.Log("Stats:  currentline = " +currentLineNumber + " prechangeNumber"+  preChangeLineNumber + " local hit z pos" + GetLocalHitLocationInZPos(localCollisionPoint.z,contactPointZ ));
             
         if(GetLocalHitLocationInXPos(wallWidth,contactPointX) > 8f){ //occurs when bumping to the side 
             if(wasWarningIssued || ((currentLineNumber < preChangeLineNumber) && GetLocalHitLocationInZPos(localCollisionPoint.z,contactPointZ ) >= 1.49)){ //if the (int) currentLine is lower than preChangeLine then it means that the collision occured after changing lane to the left into the ,,warning zone" 

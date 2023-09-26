@@ -73,7 +73,7 @@ public class MainCharacterJump : MonoBehaviour
         yield return new WaitForSeconds(jumpDuration);
         Debug.Log(this.transform.position.y);
         isJumping = true;
-        MCrigidbody.velocity = (new Vector3(0,-jumpVelocity,MCrigidbody.velocity.z));
+        //MCrigidbody.velocity = (new Vector3(0,-jumpVelocity,MCrigidbody.velocity.z));
         mainCharacterMovement.SetBusy(true);
     }
 
@@ -83,5 +83,9 @@ public class MainCharacterJump : MonoBehaviour
 
     public bool GetIsJumping(){
         return isJumping;
+    }
+
+    public float GetJumpingVelocity(){
+        return jumpVelocity;
     }
 }

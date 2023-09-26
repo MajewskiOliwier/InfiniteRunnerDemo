@@ -37,6 +37,7 @@ public class MainCharacterChangeLanes : MonoBehaviour{
     private void OnDisable() { //I won't be disabling MainCharacter but it should stay here just in case 
         movementLeft.action.performed -= PerformMoveToLeft;
         movementRight.action.performed -= PerformMoveToRight;
+        Obstacle.OnWarningBounceBackToPreChangeLane -= Obstacle_ReturnToPreviousLane;
     }
 
     private void Start(){
@@ -49,7 +50,7 @@ public class MainCharacterChangeLanes : MonoBehaviour{
 
         if(mainCharacterMovementManager.GetBusy() == false && currentLine != Line.Right){
             changeLaneStartPosition = transform.position.x;
-            MCrigidbody.velocity = (new Vector3(changeLaneSpeed,0,MCrigidbody.velocity.z)); 
+            MCrigidbody.velocity = (new Vector3(changeLaneSpeed,-15,MCrigidbody.velocity.z)); 
             // Debug.Log("Turn to the Left. Turn speed = "+changeLaneSpeed+" Straight movement speed = "+straightLaneSpeed);
             // Debug.Log(" Vector3 = "+(new Vector3(changeLaneSpeed*Time.deltaTime,0,0)) + (new Vector3(0,0,straightLaneSpeed*Time.deltaTime)));
             // Debug.Log("StartPosition : " + changeLaneStartPosition);
@@ -67,7 +68,7 @@ public class MainCharacterChangeLanes : MonoBehaviour{
         
         if(mainCharacterMovementManager.GetBusy() == false && currentLine != Line.Left){
             changeLaneStartPosition = transform.position.x;
-            MCrigidbody.velocity = (new Vector3((-1)*changeLaneSpeed,0,MCrigidbody.velocity.z));
+            MCrigidbody.velocity = (new Vector3((-1)*changeLaneSpeed,-15,MCrigidbody.velocity.z));
             // Debug.Log("Turn to the Right. Turn speed = " + changeLaneSpeed + " Straight movement speed = "+straightLaneSpeed);
             // Debug.Log(" Vector3 = " + (new Vector3((-1)*changeLaneSpeed*Time.deltaTime,0,0)) + (new Vector3(0,0,straightLaneSpeed*Time.deltaTime)));
             // Debug.Log("StartPosition : " + changeLaneStartPosition);
@@ -84,14 +85,14 @@ public class MainCharacterChangeLanes : MonoBehaviour{
         Animator mainCharacterAnimator = gameObject.GetComponent<MainCharacterManager>().getMainCharacterAnimator();
         
         if(currentLine > preChangeLine){
-            MCrigidbody.velocity = (new Vector3((-1)*changeLaneSpeed,0,MCrigidbody.velocity.z));
+            MCrigidbody.velocity = (new Vector3((-1)*changeLaneSpeed,-15,MCrigidbody.velocity.z));
             
             mainCharacterMovementManager.SetBusy(true);
             changeToTheRight = false;
             currentLine -= 1;
             mainCharacterAnimator.SetInteger("RunTypes",-1);
         }else{
-            MCrigidbody.velocity = (new Vector3(changeLaneSpeed,0,MCrigidbody.velocity.z)); 
+            MCrigidbody.velocity = (new Vector3(changeLaneSpeed,MCrigidbody.velocity.y,MCrigidbody.velocity.z)); 
             
             mainCharacterMovementManager.SetBusy(true);
             changeToTheRight = true;
@@ -111,7 +112,7 @@ public class MainCharacterChangeLanes : MonoBehaviour{
 
         if(changeToTheRight){ 
             if(changeLaneStartPosition+12 < transform.position.x){  //changeLanePosition is starting position in this context
-                MCrigidbody.velocity = new Vector3(0 , 0,straightLaneSpeed);
+                MCrigidbody.velocity = new Vector3(0 , MCrigidbody.velocity.y,straightLaneSpeed);
                 mainCharacterMovementManager.SetBusy(false);
                 
                 mainCharacterAnimator.SetInteger("RunTypes",0);
@@ -119,7 +120,7 @@ public class MainCharacterChangeLanes : MonoBehaviour{
             }
         }else{
             if(changeLaneStartPosition-12 > transform.position.x){
-                MCrigidbody.velocity = new Vector3(0 , 0,straightLaneSpeed);
+                MCrigidbody.velocity = new Vector3(0 , MCrigidbody.velocity.y,straightLaneSpeed);
                 mainCharacterMovementManager.SetBusy(false);
 
                 mainCharacterAnimator.SetInteger("RunTypes",0);
@@ -132,19 +133,19 @@ public class MainCharacterChangeLanes : MonoBehaviour{
         switch(currentLineToRemoveOffest){
             case Line.Left:{
                 if(transform.position.x != -12){
-                    transform.position = new Vector3( -12, 3, transform.position.z);
+                    transform.position = new Vector3( -12, transform.position.y, transform.position.z);
                 }
                 break;
             }
             case Line.Middle:{
                 if(transform.position.x != 0){
-                    transform.position = new Vector3(0, 3, transform.position.z);
+                    transform.position = new Vector3(0, transform.position.y, transform.position.z);
                 }
                 break;
             }
             case Line.Right:{
                 if(transform.position.x != 12){
-                    transform.position = new Vector3(12, 3, transform.position.z);
+                    transform.position = new Vector3(12, transform.position.y, transform.position.z);
                 }
                 break;
             }

@@ -15,5 +15,6 @@ public class SaveData : MonoBehaviour{
     }
 
     public Leaderboard leaderboard;
+    public int[] leaderboardScores;
     
 }

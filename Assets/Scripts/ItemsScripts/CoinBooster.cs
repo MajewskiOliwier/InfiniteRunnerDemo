@@ -18,7 +18,6 @@ public class CoinBooster : Item
     }
    
     protected override void PickUpItem(){
-        Debug.Log("pick up gold");
         scoreManager.SetCoinBoostActive();
     }
    
